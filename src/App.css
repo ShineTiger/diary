@@ -1,5 +1,6 @@
 /* App */
-.App {}
+.App {
+}
 
 /* editor */
 
@@ -35,6 +36,18 @@ textarea {
   cursor: pointer;
 }
 
+/* List  */
+
+.ScoreList {
+  border: 1px solid gray;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.ScoreList h2 {
+  text-align: center;
+}
+
 /* ITEM */
 
 .DiaryItem {
@@ -65,4 +78,3 @@ textarea {
 .DiaryItem textarea {
   padding: 10px;
 }
-

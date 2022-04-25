@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Editor = () => {
+const Editor = ({onCreate}) => {
   const [state, setState] = useState({
     writer: "",
     content: "",
@@ -14,7 +14,13 @@ const Editor = () => {
   };
   const handleSubmit = () => {
     console.log(state);
+    onCreate(state.writer, state.content, state.score)
     alert("저장 성공!");
+    setState({
+      writer: "",
+    content: "",
+    score: 0,
+    });
   };
 
   return (
@@ -38,7 +44,11 @@ const Editor = () => {
       </div>
       <span>오늘의 점수 : </span>
       <select name="score" onChange={handleInput}>
-        <option>1</option>
+        <option value={1}>1</option>
+        <option value={2}>2</option>
+        <option value={3}>3</option>
+        <option value={4}>4</option>
+        <option value={5}>5</option>
       </select>
       <div>
         <button onClick={handleSubmit}>저장하기</button>
