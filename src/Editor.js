@@ -17,7 +17,7 @@ const Editor = ({onCreate}) => {
     onCreate(state.writer, state.content, state.score)
     alert("저장 성공!");
     setState({
-      writer: "",
+    writer: "",
     content: "",
     score: 0,
     });
@@ -29,6 +29,7 @@ const Editor = ({onCreate}) => {
       <div>
         <input
           name="writer"
+          value={state.writer}
           onChange={handleInput}
           placeholder="작성자"
           required
@@ -37,6 +38,7 @@ const Editor = ({onCreate}) => {
       <div>
         <textarea
           name="content"
+          value={state.content}
           onChange={handleInput}
           placeholder="내용"
           required

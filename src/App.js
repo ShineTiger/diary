@@ -65,11 +65,18 @@ const App = () => {
     setData(updateList);
   }
 
+  const onModify = (targetId,newContent) => {
+    setData(
+      data.map((item)=>
+      item.id === targetId ? {...item, content: newContent} : item)
+    )
+  }
+
 
   return (
     <div className="App">
       <Editor onCreate={onCreate}/>
-      <List scoreList={data} onRemove={onRemove} /> 
+      <List scoreList={data} onRemove={onRemove} onModify={onModify} /> 
     </div>
   );
 };
