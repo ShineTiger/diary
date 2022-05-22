@@ -1,51 +1,37 @@
-import React, {useState, useRef} from "react"
+import React, {useState, useRef, useEffect} from "react"
 import Editor from "./Editor";
 import List from "./List";
 import "./App.css";
 
-// const dummyList = [
-//   {
-//     id: 1,
-//     writer: "홍길동",
-//     content: "example",
-//     score: 1,
-//     created_date: new Date().getTime()
-//   },
-//   {
-//     id: 2,
-//     writer: "홍길동2",
-//     content: "example2",
-//     score: 2,
-//     created_date: new Date().getTime()
-//   },
-//   {
-//     id: 3,
-//     writer: "홍길동3",
-//     content: "example3",
-//     score: 3,
-//     created_date: new Date().getTime()
-//   },
-//   {
-//     id: 4,
-//     writer: "홍길동4",
-//     content: "example4",
-//     score: 4,
-//     created_date: new Date().getTime()
-//   },
-//   {
-//     id: 5,
-//     writer: "홍길동5",
-//     content: "example5",
-//     score: 5,
-//     created_date: new Date().getTime()
-//   },
-// ];
+//https://jsonplaceholder.typicode.com/comments
 
 
 const App = () => {
   const [data, setData] = useState([]);
 
   const dataId = useRef(0);
+
+  const getData = async () => {
+    const res = await fetch(
+      "https://jsonplaceholder.typicode.com/comments"
+    ).then((res)=> res.json());
+  
+    const initData = res.slice(0,20).map((it)=>{
+      return {
+        id : dataId.current++,
+        writer : it.email,
+        score : Math.floor(Math.random()*5)+1,
+        content : it.body,
+        createDate : new Date().getTime(),
+      }
+    })
+
+    setData(initData);
+  }
+
+  useEffect(()=>{
+    getData()
+  },[])
 
   const onCreate = (writer, content, score) => {
     const createDate = new Date().getTime();
