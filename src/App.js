@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react"
+import React, {useState, useRef, useEffect, useMemo} from "react"
 import Editor from "./Editor";
 import List from "./List";
 import "./App.css";
@@ -58,10 +58,29 @@ const App = () => {
     )
   }
 
+  const getDiaryAnalysis = useMemo(
+    () =>{
+    console.log("analysis start")
+
+    const goodCount = data.filter((good)=> good.score >=3).length;
+    const badCount = data.length - goodCount;
+    const goodRatio = (goodCount/data.length) *100;
+    return{goodCount, badCount, goodRatio};
+  },[data.length]
+  );
+
+  const {goodCount, badCount, goodRatio} = getDiaryAnalysis;
+
 
   return (
     <div className="App">
       <Editor onCreate={onCreate}/>
+      <div>
+        <p>전체일지 : {data.length}</p>
+        <p>점수높은 일지 : {goodCount}</p>
+        <p>점수낮은 일지 : {badCount}</p>
+        <p>점수높은 일지 비율 : {goodRatio}</p>
+      </div>
       <List scoreList={data} onRemove={onRemove} onModify={onModify} /> 
     </div>
   );
