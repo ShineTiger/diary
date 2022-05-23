@@ -1,6 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
+//함수를 prop으로 받는다. 
 const Editor = ({onCreate}) => {
+
   const [state, setState] = useState({
     writer: "",
     content: "",
@@ -13,7 +15,6 @@ const Editor = ({onCreate}) => {
     });
   };
   const handleSubmit = () => {
-    console.log(state);
     onCreate(state.writer, state.content, state.score)
     alert("저장 성공!");
     setState({
@@ -59,4 +60,4 @@ const Editor = ({onCreate}) => {
   );
 };
 
-export default Editor;
+export default React.memo(Editor);

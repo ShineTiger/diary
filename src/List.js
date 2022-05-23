@@ -15,4 +15,8 @@ const List = ({scoreList, onRemove, onModify}) => {
   );
 };
 
+List.defaltProps = {
+  scoreList: []
+};
+
 export default List;

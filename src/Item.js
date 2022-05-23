@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useEffect,useState } from "react";
 
 
 
 const Item = ({ writer, score, createDate, content, id, onRemove, onModify}) => {
+  useEffect(()=>console.log(`${id}item rendered`))
 
   const [modified,setModified] = useState(false);
 
@@ -42,4 +43,4 @@ const Item = ({ writer, score, createDate, content, id, onRemove, onModify}) => 
   );
 };
 
-export default Item;
+export default React.memo(Item);
